@@ -19,7 +19,6 @@ def run_login_flow():
                 'Login',
                 'Sign up',
                 "init DB",
-                "Add Database"
             ]
         },
         {
@@ -121,12 +120,9 @@ def run_main_flow(session):
                 },
                 {
                     'name': 'View Credentials',
-                    'value': run_view_credentials,
-                },
-                {
-                    'name': 'View an account',
                     'value': run_read_flow,
                 },
+
                 {
                     'name': 'Edit an account',
                     'value': run_edit_flow,

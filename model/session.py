@@ -1,4 +1,5 @@
 from model.account import Account
+from model.fetch import fetch_credentials
 
 
 class Session(object):
@@ -15,8 +16,8 @@ class Session(object):
     def account_exists(self, name):
         return name in self.get_account_names()
 
-    def get_account_names(self):
-        return sorted([a.name for a in self.vault])
+    def get_account_names(self, option):
+        return fetch_credentials(table_name=option,option='i')
 
     def display_account(self, name):
         self.get_account(name).display()

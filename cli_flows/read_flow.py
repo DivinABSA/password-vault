@@ -1,43 +1,50 @@
+from pprint import pprint
+
 from PyInquirer import prompt
 
+
 from lib.common import custom_style
+
 from model.fetch import fetch_credentials
 
 
 def run_read_flow(session):
     """
-    Command line interface questions for viewing an account.
-    Asks which account to view and then prints attributes to console.
+    Command line interface questions for creating a new account.
+    Asks details of account to create, adds account to vault locally and then updates vault in cloud.
     """
-    account_names = session.get_account_names()
-
-    if len(account_names) == 0:
-        print('No accounts.')
-        return
-
+    new_account = None
     questions = [
         {
             'type': 'list',
-            'name': 'selected_account',
-            'message': 'Choose an account:',
+            'name': 'read_flow',
+            'message': 'Select Flow to view?',
             'choices': [
-                "Vault Users",
-                "Database Credentials",
-                "Cloud Credentials"
-            ],
+                'Vault Credentials',
+                'Normal Credentials',
+                'Database Credentials',
+                'Cloud Credentials',
+            ]
         },
+
     ]
 
     answers = prompt(questions, style=custom_style)
 
     if len(answers) == 0:
+        print('No valid response was provide')
         exit()
 
-    session.display_account(answers['selected_account'])
+    if answers['read_flow'] == 'Vault Credentials':
+        pprint(fetch_credentials(table_name='vault'))
 
+    if answers['read_flow'] == 'Normal Credentials':
+        pprint(fetch_credentials(table_name='normal_creds'))
 
-def get_names_from_vault(vault):
-    # Fetch Items from the vault database table
-    fetch_credentials(table_name='')
+    if answers['read_flow'] == 'Database Credentials':
+        pprint(fetch_credentials(table_name='database_creds'))
 
-    return list(vault.keys())
+    if answers['read_flow'] == 'Cloud Credentials':
+        pprint(fetch_credentials(table_name='cloud_creds'))
+
+    return session

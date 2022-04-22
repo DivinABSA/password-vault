@@ -13,7 +13,7 @@ def run_edit_flow(session):
 
     if len(account_names) == 0:
         print('No accounts.')
-        return
+        # return
 
     questions = [
         {
