@@ -1,0 +1,19 @@
+creat virtual env.
+
+python -m pip install virtualenv
+python -m venv env
+env\Scripts\activate
+
+pip install -r requirements.txt
+
+env\Scripts\activate
+ssh divin@129.232.191.114
+@100Divin_
+cd .ssh
+ssh-keygen -t rsa -b 4096 -C 'divinlonji@gmail.com'
+ssh-copy-id  divin@129.232.191.114
+ubuntu 20.04
+64GB ram 2T storage
+mkdir
+pip install virtualenv
+source env/bin/activate
